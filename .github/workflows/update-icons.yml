@@ -104,7 +104,13 @@ jobs:
           ICON_VERSION: ${{ needs.check.outputs.version }}
         run: npm install --save-exact "@wordpress/icons@${ICON_VERSION}"
 
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v6
+
       - name: Build The Static Site
+        env:
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
         run: npm run build
 
       - name: Commit The Dependency Update
@@ -121,9 +127,6 @@ jobs:
             git commit -m "chore: update @wordpress/icons to ${ICON_VERSION}"
             git push origin "HEAD:${UPDATE_BRANCH}"
           fi
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v6
 
       - name: Upload The Pages Artifact
         uses: actions/upload-pages-artifact@v5

@@ -24,9 +24,11 @@ async function build() {
     const marker = '/* ICON_CATALOGUE */ null';
     const buildMarker = '<!-- BUILD_DETAILS -->';
     const styleMarker = '<link rel="stylesheet" href="style.css">';
+    const imageMarker = '<!-- OPEN_GRAPH_IMAGE -->';
     assert.equal(template.split(marker).length, 2, 'Expected exactly one catalogue placeholder');
     assert.equal(template.split(buildMarker).length, 2, 'Expected exactly one build details placeholder');
     assert.equal(template.split(styleMarker).length, 2, 'Expected exactly one stylesheet link');
+    assert.equal(template.split(imageMarker).length, 2, 'Expected exactly one Open Graph image placeholder');
     const metadata = new Map(manifest.map((entry) => [entry.slug, entry]));
     const glyphRules = /\.dashicons-([a-z0-9-]+)::?before\s*\{\s*content:\s*["']\\([0-9a-f]+)["'];?\s*\}/gi;
     for (const [, name, hexadecimal] of dashiconsCss.matchAll(glyphRules)) {
@@ -85,14 +87,22 @@ async function build() {
         ` using `,
         `@wordpress/icons v${wordpressPackage.version}`
     ));
+    const imagePath = 'assets/soc-media-1000px.png';
+    const siteUrl = process.env.SITE_URL;
+    const imageUrl = siteUrl
+        ? new URL(imagePath, siteUrl.endsWith('/') ? siteUrl : `${siteUrl}/`).href
+        : imagePath;
+    const imageMeta = renderToStaticMarkup(createElement('meta', { property: 'og:image', content: imageUrl }));
     const html = template.replace(marker, () => json)
         .replace(buildMarker, () => buildDetails)
+        .replace(imageMarker, () => imageMeta)
         .replace(styleMarker, () => `<style>\n${stylesheet}\n</style>`);
     const assets = path.join(output, 'assets');
     await fs.mkdir(path.join(assets, 'dashicons/css'), { recursive: true });
     await fs.mkdir(path.join(assets, 'dashicons/fonts'), { recursive: true });
     await fs.mkdir(path.join(output, 'licenses'), { recursive: true });
     await Promise.all([
+        fs.copyFile(path.join(root, 'soc-media-1000px.png'), path.join(output, imagePath)),
         fs.copyFile(path.join(root, 'dashicons/icon-font/css/dashicons.css'), path.join(assets, 'dashicons/css/dashicons.css')),
         ...['eot', 'ttf', 'woff2'].map((extension) => fs.copyFile(
             path.join(root, `dashicons/icon-font/fonts/dashicons.${extension}`),

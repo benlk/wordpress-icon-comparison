@@ -2,6 +2,8 @@
 
 A comparison table for WordPress' old [Dashicons](https://developer.wordpress.org/resource/dashicons/) package and the new [`@wordpress/icons`](https://github.com/WordPress/gutenberg/blob/ba141c19777e67d6fe782db665e6d52b80a973e2/packages/icons/README.md) replacement.
 
+Created because I saw [a Make blog post about the WordPress icon overhaul](https://make.wordpress.org/core/2026/11/05/svg-icons-in-the-admin-bar-and-menu-in-wordpress-7-2/) and wanted to have a way to visually compare the two icon sets.
+
 ## Comparison methods
 
 Data sources:
@@ -43,8 +45,14 @@ npm run build
 
 Open `build/index.html`.
 
+For deployment, set `SITE_URL` to the site's public base URL so the Open Graph image URL is absolute. The GitHub Pages workflow supplies this automatically. Local builds without `SITE_URL` use a relative image path. The build script does not clear `build/` or delete unrelated assets.
+
 ## Updates
 
 This _should_ update automatically when a new `@wordpress/dashicons` release is published, within a week. [The GitHub Action](./.github/workflows/update-icons.yml) to build this site runs on Saturday mornings.
 
 The build fails for missing assets, invalid or conflicting codepoints, unexpected package exports, invalid SVG output, or missing/duplicate declared mappings.
+
+## AI Usage
+
+Markup and functionality were primarily handled by GitHub Copilot. Concept, visual styles, wording, and overall approach were done by Ben Keith.
