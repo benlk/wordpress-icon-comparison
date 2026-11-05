@@ -1,0 +1,147 @@
+name: Update Icons And Deploy Pages
+
+on:
+  schedule:
+    - cron: '0 7 * * 6'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: Check For An Icon Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pages: read
+    outputs:
+      changed: ${{ steps.release.outputs.changed }}
+      version: ${{ steps.release.outputs.version }}
+    steps:
+      - name: Compare npm With The Published Site
+        id: release
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const registry = await fetch('https://registry.npmjs.org/@wordpress%2ficons/latest', {
+              signal: AbortSignal.timeout(30000),
+            });
+            if (!registry.ok) throw new Error(`npm registry returned ${registry.status}`);
+            const { version } = await registry.json();
+            const semver = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/;
+            if (typeof version !== 'string' || !semver.test(version)) {
+              throw new Error('npm returned an invalid icon version');
+            }
+
+            let published;
+            let site;
+            try {
+              const { data } = await github.rest.repos.getPages(context.repo);
+              site = data.html_url;
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              core.info('No Pages site found; an initial deployment is needed.');
+            }
+            if (site) {
+              const base = site.endsWith('/') ? site : `${site}/`;
+              const url = new URL('icons-version.json', base);
+              url.searchParams.set('run', `${context.runId}-${context.runAttempt}`);
+              const response = await fetch(url, {
+                cache: 'no-store',
+                signal: AbortSignal.timeout(30000),
+              });
+              if (response.ok) {
+                const metadata = await response.json();
+                published = metadata.wordpressIcons;
+                if (typeof published !== 'string' || !semver.test(published)) {
+                  throw new Error('Published icon version metadata is invalid');
+                }
+              } else if (response.status !== 404) {
+                throw new Error(`Published version lookup returned ${response.status}`);
+              }
+            }
+
+            const changed = published !== version;
+            core.setOutput('version', version);
+            core.setOutput('changed', String(changed));
+            core.info(changed
+              ? `Updating @wordpress/icons from ${published || 'not yet deployed'} to ${version}.`
+              : `@wordpress/icons ${version} is current; skipping build and deployment.`);
+
+  build:
+    name: Build The Updated Catalogue
+    needs: check
+    if: needs.check.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pages: read
+    steps:
+      - name: Check Out The Repository And Submodules
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+          persist-credentials: true
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install Locked Dependencies
+        run: npm ci
+
+      - name: Install The New Icon Release
+        env:
+          ICON_VERSION: ${{ needs.check.outputs.version }}
+        run: npm install --save-exact "@wordpress/icons@${ICON_VERSION}"
+
+      - name: Build The Static Site
+        run: npm run build
+
+      - name: Commit The Dependency Update
+        env:
+          ICON_VERSION: ${{ needs.check.outputs.version }}
+          UPDATE_BRANCH: ${{ github.ref_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- package.json package-lock.json
+          if git diff --cached --quiet -- package.json package-lock.json; then
+            echo "Dependency files are already current; no commit needed."
+          else
+            git commit -m "chore: update @wordpress/icons to ${ICON_VERSION}"
+            git push origin "HEAD:${UPDATE_BRANCH}"
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload The Pages Artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: build/
+
+  deploy:
+    name: Deploy To GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy The Pages Artifact
+        id: deployment
+        uses: actions/deploy-pages@v5

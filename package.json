@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.cjs"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "@wordpress/icons": "^20.0.0",
+    "change-case": "^4.1.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  }
+}
