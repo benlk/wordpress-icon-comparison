@@ -57,6 +57,7 @@
 	<footer>
         <p>
             <!-- BUILD_DETAILS -->
+			 
         </p>
 		<nav aria-label="Library licenses">
             <a href="licenses/dashicons.txt">Dashicons license</a>
@@ -118,7 +119,7 @@
 			} else {
 				glyph.innerHTML = icon.svg;
 			}
-			const label = element('code', '', identifier);
+			const label = element('code', '', library === 'dashicons' ? icon.name : identifier);
 			label.title = identifier;
 			const copy = element('button', 'copy');
 			copy.type = 'button';
