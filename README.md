@@ -49,6 +49,8 @@ For deployment, set `SITE_URL` to the site's public base URL so the Open Graph i
 
 ## Updates
 
+[![Update Icons And Deploy Pages](https://github.com/benlk/wordpress-icon-comparison/actions/workflows/update-icons.yml/badge.svg)](https://github.com/benlk/wordpress-icon-comparison/actions/workflows/update-icons.yml)
+
 This _should_ update automatically when a new `@wordpress/dashicons` release is published, within a week. [The GitHub Action](./.github/workflows/update-icons.yml) to build this site runs on Saturday mornings.
 
 The build fails for missing assets, invalid or conflicting codepoints, unexpected package exports, invalid SVG output, or missing/duplicate declared mappings.

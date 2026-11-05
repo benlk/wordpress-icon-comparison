@@ -21,6 +21,13 @@
 		</div>
 	</header>
 	<main class="wrap">
+		<section>
+			<p>Compares <a href="https://github.com/WordPress/dashicons">WordPress Dashicons</a> and <a href="https://www.npmjs.com/package/@wordpress/icons"><code>@wordpress/icons</code></a>.</p>
+			<p>
+				Updates Saturdays, if new releases are made to <code>@wordpress/icons</code>.
+				<a href="https://github.com/benlk/wordpress-icon-comparison/actions/workflows/update-icons.yml"><img alt="Update Icons And Deploy Pages badge" src="https://github.com/benlk/wordpress-icon-comparison/actions/workflows/update-icons.yml/badge.svg" height="auto" /></a>
+			</p>
+		</section>
 		<section class="toolbar" aria-label="Catalogue controls">
 			<div class="control-line">
 				<label class="control search" for="search">Search icons
@@ -57,8 +64,10 @@
 	<footer>
         <p>
             <!-- BUILD_DETAILS -->
-			 
         </p>
+		<p>
+			Updates Saturdays, if new releases are made to @wordpress/icons
+		</p>
 		<nav aria-label="Library licenses">
             <a href="licenses/dashicons.txt">Dashicons license</a>
             <a href="licenses/wordpress-icons.txt">WordPress icons license</a>
@@ -119,7 +128,7 @@
 			} else {
 				glyph.innerHTML = icon.svg;
 			}
-			const label = element('code', '', library === 'dashicons' ? icon.name : identifier);
+			const label = element('code', '', identifier);
 			label.title = identifier;
 			const copy = element('button', 'copy');
 			copy.type = 'button';

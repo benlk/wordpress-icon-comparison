@@ -72,8 +72,11 @@ a {
 
 header {
     padding-block: 36px 28px;
-    border-bottom: 1px solid var(--line);
     background: var(--preview);
+}
+
+header, section {
+    border-bottom: 1px solid var(--line);
 }
 
 .eyebrow {
