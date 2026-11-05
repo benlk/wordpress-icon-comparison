@@ -32,7 +32,8 @@
 	{
 		"slug": "align-center",
 		"label": "Align Center",
-		"filePath": "library/align-center.svg"
+		"filePath": "library/align-center.svg",
+		"dashicons": [ "dashicons-editor-aligncenter" ]
 	},
 	{
 		"slug": "align-justify",
@@ -42,23 +43,27 @@
 	{
 		"slug": "align-left",
 		"label": "Align Left",
-		"filePath": "library/align-left.svg"
+		"filePath": "library/align-left.svg",
+		"dashicons": [ "dashicons-editor-alignleft" ]
 	},
 	{
 		"slug": "align-none",
 		"label": "Align None",
-		"filePath": "library/align-none.svg"
+		"filePath": "library/align-none.svg",
+		"dashicons": [ "dashicons-align-none" ]
 	},
 	{
 		"slug": "align-right",
 		"label": "Align Right",
-		"filePath": "library/align-right.svg"
+		"filePath": "library/align-right.svg",
+		"dashicons": [ "dashicons-editor-alignright" ]
 	},
 	{
 		"slug": "archive",
 		"label": "Archive",
 		"filePath": "library/archive.svg",
-		"keywords": [ "folder" ]
+		"keywords": [ "folder" ],
+		"dashicons": [ "dashicons-archive" ]
 	},
 	{
 		"slug": "arrow-down",
@@ -148,7 +153,8 @@
 	{
 		"slug": "backup",
 		"label": "Backup",
-		"filePath": "library/backup.svg"
+		"filePath": "library/backup.svg",
+		"dashicons": [ "dashicons-backup" ]
 	},
 	{
 		"slug": "bell",
@@ -211,7 +217,8 @@
 	{
 		"slug": "button",
 		"label": "Button",
-		"filePath": "library/button.svg"
+		"filePath": "library/button.svg",
+		"dashicons": [ "dashicons-button" ]
 	},
 	{
 		"slug": "buttons",
@@ -372,7 +379,8 @@
 	{
 		"slug": "cloud",
 		"label": "Cloud",
-		"filePath": "library/cloud.svg"
+		"filePath": "library/cloud.svg",
+		"dashicons": [ "dashicons-cloud" ]
 	},
 	{
 		"slug": "cloud-download",
@@ -382,12 +390,14 @@
 	{
 		"slug": "cloud-upload",
 		"label": "Cloud Upload",
-		"filePath": "library/cloud-upload.svg"
+		"filePath": "library/cloud-upload.svg",
+		"dashicons": [ "dashicons-cloud-upload" ]
 	},
 	{
 		"slug": "code",
 		"label": "Code",
-		"filePath": "library/code.svg"
+		"filePath": "library/code.svg",
+		"dashicons": [ "dashicons-editor-code" ]
 	},
 	{
 		"slug": "cog",
@@ -407,7 +417,8 @@
 	{
 		"slug": "columns",
 		"label": "Columns",
-		"filePath": "library/columns.svg"
+		"filePath": "library/columns.svg",
+		"dashicons": [ "dashicons-columns" ]
 	},
 	{
 		"slug": "comment",
@@ -540,7 +551,8 @@
 	{
 		"slug": "database",
 		"label": "Database",
-		"filePath": "library/database.svg"
+		"filePath": "library/database.svg",
+		"dashicons": [ "dashicons-database" ]
 	},
 	{
 		"slug": "desktop",
@@ -620,7 +632,8 @@
 	{
 		"slug": "filter",
 		"label": "Filter",
-		"filePath": "library/filter.svg"
+		"filePath": "library/filter.svg",
+		"dashicons": [ "dashicons-filter" ]
 	},
 	{
 		"slug": "flip-horizontal",
@@ -854,7 +867,8 @@
 	{
 		"slug": "html",
 		"label": "HTML",
-		"filePath": "library/html.svg"
+		"filePath": "library/html.svg",
+		"dashicons": [ "dashicons-html" ]
 	},
 	{
 		"slug": "image",
@@ -977,7 +991,8 @@
 	{
 		"slug": "layout",
 		"label": "Layout",
-		"filePath": "library/layout.svg"
+		"filePath": "library/layout.svg",
+		"dashicons": [ "dashicons-layout" ]
 	},
 	{
 		"slug": "level-up",
@@ -1030,12 +1045,14 @@
 	{
 		"slug": "list-view",
 		"label": "List View",
-		"filePath": "library/list-view.svg"
+		"filePath": "library/list-view.svg",
+		"dashicons": [ "dashicons-list-view" ]
 	},
 	{
 		"slug": "lock",
 		"label": "Lock",
-		"filePath": "library/lock.svg"
+		"filePath": "library/lock.svg",
+		"dashicons": [ "dashicons-lock" ]
 	},
 	{
 		"slug": "login",
@@ -1074,7 +1091,8 @@
 	{
 		"slug": "megaphone",
 		"label": "Megaphone",
-		"filePath": "library/megaphone.svg"
+		"filePath": "library/megaphone.svg",
+		"dashicons": [ "dashicons-megaphone" ]
 	},
 	{
 		"slug": "menu",
@@ -1362,12 +1380,14 @@
 	{
 		"slug": "pull-left",
 		"label": "Pull Left",
-		"filePath": "library/pull-left.svg"
+		"filePath": "library/pull-left.svg",
+		"dashicons": [ "dashicons-align-pull-left" ]
 	},
 	{
 		"slug": "pull-right",
 		"label": "Pull Right",
-		"filePath": "library/pull-right.svg"
+		"filePath": "library/pull-right.svg",
+		"dashicons": [ "dashicons-align-pull-right" ]
 	},
 	{
 		"slug": "pullquote",
@@ -1415,7 +1435,8 @@
 	{
 		"slug": "redo",
 		"label": "Redo",
-		"filePath": "library/redo.svg"
+		"filePath": "library/redo.svg",
+		"dashicons": [ "dashicons-redo" ]
 	},
 	{
 		"slug": "remove-bug",
@@ -1548,7 +1569,8 @@
 	{
 		"slug": "shortcode",
 		"label": "Shortcode",
-		"filePath": "library/shortcode.svg"
+		"filePath": "library/shortcode.svg",
+		"dashicons": [ "dashicons-shortcode" ]
 	},
 	{
 		"slug": "shuffle",
@@ -1746,17 +1768,20 @@
 	{
 		"slug": "table-row-after",
 		"label": "Table Row After",
-		"filePath": "library/table-row-after.svg"
+		"filePath": "library/table-row-after.svg",
+		"dashicons": [ "dashicons-table-row-after" ]
 	},
 	{
 		"slug": "table-row-before",
 		"label": "Table Row Before",
-		"filePath": "library/table-row-before.svg"
+		"filePath": "library/table-row-before.svg",
+		"dashicons": [ "dashicons-table-row-before" ]
 	},
 	{
 		"slug": "table-row-delete",
 		"label": "Table Row Delete",
-		"filePath": "library/table-row-delete.svg"
+		"filePath": "library/table-row-delete.svg",
+		"dashicons": [ "dashicons-table-row-delete" ]
 	},
 	{
 		"slug": "tablet",
@@ -1811,13 +1836,15 @@
 		"slug": "thumbs-down",
 		"label": "Thumbs Down",
 		"filePath": "library/thumbs-down.svg",
-		"keywords": [ "dislike" ]
+		"keywords": [ "dislike" ],
+		"dashicons": [ "dashicons-thumbs-down" ]
 	},
 	{
 		"slug": "thumbs-up",
 		"label": "Thumbs Up",
 		"filePath": "library/thumbs-up.svg",
-		"keywords": [ "like" ]
+		"keywords": [ "like" ],
+		"dashicons": [ "dashicons-thumbs-up" ]
 	},
 	{
 		"slug": "time",
@@ -1848,7 +1875,8 @@
 		"slug": "trash",
 		"label": "Trash",
 		"filePath": "library/trash.svg",
-		"keywords": [ "delete" ]
+		"keywords": [ "delete" ],
+		"dashicons": [ "dashicons-trash" ]
 	},
 	{
 		"slug": "trending-down",
@@ -1868,7 +1896,8 @@
 	{
 		"slug": "undo",
 		"label": "Undo",
-		"filePath": "library/undo.svg"
+		"filePath": "library/undo.svg",
+		"dashicons": [ "dashicons-undo" ]
 	},
 	{
 		"slug": "ungroup",
@@ -1878,7 +1907,8 @@
 	{
 		"slug": "unlock",
 		"label": "Unlock",
-		"filePath": "library/unlock.svg"
+		"filePath": "library/unlock.svg",
+		"dashicons": [ "dashicons-unlock" ]
 	},
 	{
 		"slug": "unseen",
@@ -1909,7 +1939,8 @@
 	{
 		"slug": "video",
 		"label": "Video",
-		"filePath": "library/video.svg"
+		"filePath": "library/video.svg",
+		"dashicons": [ "dashicons-editor-video" ]
 	},
 	{
 		"slug": "widget",
