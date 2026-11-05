@@ -3,6 +3,9 @@ name: Update Icons And Deploy Pages
 on:
   schedule:
     - cron: '0 7 * * 6'
+  push:
+    branches:
+      - trunk
   workflow_dispatch:
 
 permissions:
